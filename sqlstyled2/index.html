@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    #signin {
+      background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/957/659/small/pink-wavy-shape-background.jpg");
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #adminlogin {
+      background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/957/659/small/pink-wavy-shape-background.jpg");
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #adminpopup {
+      height: 50%;
+      width: 26%;
+      position: absolute;
+      margin-top: 12%;
+      margin-left: 37%;
+      border-radius: 18%;
+      /*       transform: translateY(100%); */
+      background-color: white;
+    }
+
+    #registerpopup {
+      height: 50%;
+      width: 26%;
+      position: absolute;
+      margin-top: 12%;
+      margin-left: 37%;
+      border-radius: 18%;
+      /*       transform: translateY(100%); */
+      background-color: white;
+    }
+
+    #register {
+      background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/957/659/small/pink-wavy-shape-background.jpg");
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #signinpopup {
+      height: 50%;
+      width: 26%;
+      position: absolute;
+      margin-top: 12%;
+      margin-left: 37%;
+      border-radius: 18%;
+      /*       transform: translateY(100%); */
+      background-color: white;
+    }
+
+    .tickettoview {
+      background-color: white;
+      border-style: solid;
+      margin-top: -2px;
+      padding-left: 5px;
+      border-width: 2px;
+      border-color: black;
+      width: 50%;
+    }
+
+    .ticketoptions {
+      height: 8px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+    }
+
+    .ticketoptions:hover {
+      cursor: pointer;
+    }
+
+    .ticketdiv {
+      position: relative;
+      background-color: white;
+      border-style: solid;
+      margin-top: -2px;
+      padding-left: 5px;
+      border-width: 2px;
+      border-color: black;
+      width: 50%;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .ticketcommentadminview {
+      word-wrap: normal;
+      width: 50%;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="signin">
+    <CENTER>
+      <div id="signinpopup">
+        <CENTER> <img src="https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png"
+            style="height: 100px; margin-top: 15%; margin-bottom: 8%"> </CENTER>
+        <CENTER>
+          <input type="email" placeholder="Email" id="signinEmail"
+            style="height: 20px; width: 225px; margin-bottom: 1%; border-radius: 7px">
+          <br>
+          <input type="password" placeholder="Password" id="signinPassword"
+            style="height: 20px; width: 225px; margin-bottom: 5px; border-radius: 7px">
+          <br>
+          <p id="createaccount" onclick="createaccount()"
+            style="margin-top: 0; margin-bottom: 0; float: right; margin-right: 18%; font-size: 13px"> I need an
+            account
+          </p>
+          <br>
+          <p id="gotoadminlogin" onclick="gotoadminlogin()"
+            style="margin-top: -5px; margin-bottom: 0; float: right; margin-right: 18%; font-size: 13px"> Admin login
+          </p>
+          <br>
+          <button id="submitsignin" onclick="login()"
+            style="background-color: lightpink; border-radius: 5px; border-width: 0; color: white; width: 150px; height: 25px; margin-top: 10px">
+            Sign In
+          </button>
+        </CENTER>
+      </div>
+    </CENTER>
+  </div>
+  <div id="register">
+    <CENTER>
+      <div id="registerpopup">
+        <CENTER>
+          <img src="https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png"
+            style="height: 100px; margin-top: 15%; margin-bottom: 8%">
+        </CENTER>
+        <CENTER>
+          <input type="text" class="inputstyle" placeholder="Name" id="registerName">
+          <br>
+          <input type="email" class="inputstyle" placeholder="Email" id="registerEmail">
+          <br>
+          <input type="password" class="inputstyle" placeholder="Password" id="registerPassword">
+          <br>
+          <p id="alreadyhave" onclick="alreadyhave()"
+            style="float:right; font-size: 13px; margin-right: 18%; margin-top: 0">Already have an account?</p>
+          <br>
+          <button id="submitregister" onclick="submitregister()"
+            style="background-color: lightpink; border-radius: 5px; border-width: 0; color: white; width: 150px; height: 25px; margin-top: 10px; margin-left: 30%; float: left">
+            Register </button>
+        </CENTER>
+      </div>
+    </CENTER>
+  </div>
+  <div id="homepage" style="height: 100%; width: 100%">
+    <button onclick=submitpage()> Submit a Ticket </button>
+    <button onclick="viewpage()"> Your tickets </button>
+    <button onclick="openeditprofile()"> Edit Profile </button>
+    <button onclick="logout()"> Logout </button>
+  </div>
+
+  <!--   <div id="editticket"
+    style="height:130px; width:300px; border-style:solid; border-width: 2px; padding: 5px; border-color: black">
+
+    <input type="text" id="edittickettitle" style="width: 285; margin-bottom: 5px" placeholder="Title">
+    <input type="text" style="height:100px; width: 285px" id="editticketcomment" placeholder="Comment">
+
+  </div>
+ -->
+  <div id="adminlogin">
+    <div id="mainadminlogin">
+      <div id="adminpopup">
+        <CENTER>
+          <img src="https://cdn4.iconfinder.com/data/icons/e-commerce-181/512/477_profile__avatar__man_-512.png"
+            style="height: 100px; margin-top: 15%; margin-bottom: 8%">
+        </CENTER>
+        <CENTER>
+          <input type="email" placeholder="Email" id="adminloginEmail" class="inputstyle">
+          <br>
+          <input type="password" placeholder="Password" id="adminloginPassword" class="inputstyle">
+          <p id="alreadyhave" onclick="alreadyhave()"
+            style="float:right; font-size: 13px; margin-right: 18%; margin-top: 0;"> Not an admin? </p>
+          <br>
+          <br>
+          <button id="submitadminlogin" onclick="adminlogin()"
+            style="background-color: lightpink; border-radius: 5px; border-width: 0; color: white; width: 150px; height: 25px; margin-top: 10px; float: left; margin-left: 30%">
+            Sign In </button>
+        </CENTER>
+      </div>
+    </div>
+  </div>
+
+  <div id="viewpage" style="height: 100%; width: 100%">
+    <button onclick="touserhome()"> Back to home </button>
+    <br>
+  </div>
+
+  <div id="viewticketsadmin" style="height: 100%; width: 100%">
+    <button onclick="toadminhome()"> Back to home </button>
+    <br>
+    <div id="notseen">
+      <p> Not seen </p>
+    </div>
+    <div id="inprogress">
+      <p> In Progress</p>
+    </div>
+    <div id="completed">
+      <p> Complete </p>
+    </div>
+    <div id="othertickets">
+      <p> Other tickets </p>
+    </div>
+  </div>
+
+  <div id="submitpage" style="height: 100%; width: 100%">
+    <Button onclick="touserhome()"> Back to home </Button>
+    <br>
+    <input type="text" placeholder="Subject" id="ticketsubject">
+    <br>
+    <input type="text" placeholder="Comment" id="ticketcomment" style="height:25%; text-align:start">
+    <br>
+    <button id="submitticket" onclick="submitticket()"> Submit </button>
+  </div>
+
+  <div id="adminhomepage" style="height: 100%; width: 100%">
+    <button onclick="viewticketsadmin()"> View tickets </button>
+    <button onclick="editaccountadmin()"> Edit account </button>
+    <button onclick="logout()"> Log out </button>
+  </div>
+
+
+
+
+
+
+  <div id="admineditprofile" style="height: 100%; width: 100%">
+    <button onclick="toadminhome()"> Back to home </button>
+    <br>
+    <p> Edit profile </p>
+    <button onclick="deleteaccountadmin()"> Delete Account </button>
+    <div id="deleteaccountadmin">
+      <p> Please enter your password: </p>
+      <input type="text" placeholder="password" id="passfordeleteadmin">
+      <Button onclick="finaldeleteadmin()"> Delete </Button>
+    </div>
+    <br>
+    <button onclick="changeNameadmin()"> Change Name </button>
+    <div id="changenameadmin">
+      <input id="newnameadmin" placeholder="New name">
+      <br>
+      <button onclick="namechangeupdateadmin()"> Change </button>
+    </div>
+    <br>
+    <button onclick="changePasswordadmin()"> Change Password </button>
+    <div id="changepasswordadmin">
+      <input id="checkemailadmin" placeholder="Email">
+      <br>
+      <input id="currentpasswordadmin" type="password" placeholder="Current password">
+      <br>
+      <input id="newpassadmin" type="password" placeholder="New Password">
+      <br>
+      <input id="newpass2admin" type="password" placeholder="Confirm new password">
+      <button onclick="passwordchangeupdateadmin()"> Change </button>
+    </div>
+  </div>
+  <div id="editprofilepage" style="height: 100%; width: 100%">
+    <button onclick="touserhome()"> Back to home </button>
+    <br>
+    <p> Edit profile </p>
+    <button onclick="deleteaccount()"> Delete Account </button>
+    <div id="deleteaccount">
+      <p> Please enter your password: </p>
+      <input type="text" placeholder="password" id="passfordelete">
+      <Button onclick="finaldelete()"> Delete </Button>
+    </div>
+    <br>
+    <button onclick="changeEmail()"> Change Email </button>
+    <div id="changeemail">
+      <input id="currentemail" placeholder="Current email">
+      <br>
+      <input id="newemail" placeholder="New email">
+      <br>
+      <input id="newemail2" placeholder="Re-enter new email">
+      <br>
+      <input id="emailpass" type="password" placeholder="Confirm password">
+      <button onclick="emailchangeupdate()"> Change </button>
+    </div>
+    <br>
+    <button onclick="changeName()"> Change Name </button>
+    <div id="changename">
+      <input id="newname" placeholder="New name">
+      <br>
+      <button onclick="namechangeupdate()"> Change </button>
+    </div>
+    <br>
+    <button onclick="changePassword()"> Change Password </button>
+    <div id="changepassword">
+      <input id="checkemail" placeholder="Email">
+      <br>
+      <input id="currentpassword" type="password" placeholder="Current password">
+      <br>
+      <input id="newpass" type="password" placeholder="New Password">
+      <br>
+      <input id="newpass2" type="password" placeholder="Confirm new password">
+      <button onclick="passwordchangeupdate()"> Change </button>
+    </div>
+  </div>
+  <script>
+
+    function changeName() {
+      document.getElementById("changename").style.display = "block"
+    }
+    function changeNameadmin() {
+      document.getElementById("changenameadmin").style.display = "block"
+    }
+
+    function changePassword() {
+      document.getElementById("changepassword").style.display = "block"
+    }
+
+    function passwordchangeupdate() {
+      if (currentuser != null) {
+        var email = currentuser.email;
+        var oldpass = document.getElementById("currentpassword").value
+        console.log("oldpass" + oldpass)
+        console.log("oldpass" + currentuser.password)
+        if (oldpass == currentuser.password) {
+          if (document.getElementById("newpass").value == document.getElementById("newpass2").value) {
+            URL = "https://sqlite-database.josephinemouse.repl.co/changepassword/" + email + "/" + document.getElementById("newpass").value
+            fetch(URL)
+              .then(() => {
+                console.log("password changed")
+              })
+            alert("Password successfully changed!")
+          }
+
+          else {
+            alert("Please make sure both passwords match")
+          }
+        }
+        else {
+          alert("Password incorrect")
+        }
+      }
+      else {
+        clearall()
+        currentuser = null;
+        document.getELementById("signin").style.display = "block"
+      }
+    }
+
+    function emailchangeupdate() {
+      var id = currentuser.userID;
+      var newemail = document.getElementById("newemail").value;
+      if (document.getElementById("currentemail").value == currentuser.email) {
+        const URL = "https://sqlite-database.josephinemouse.repl.co/changeemail/" + id + "/" + newemail
+        if (document.getElementById("newemail").value == document.getElementById("newemail2").value) {
+          if (document.getElementById("emailpass").value == currentuser.password) {
+
+            console.log("emailchange")
+            console.log(id);
+            console.log(newemail);
+            fetch(URL)
+              .then(() => {
+
+              })
+            alert("Email changed successfully!")
+          }
+        }
+      }
+    }
+
+    function changePasswordadmin() {
+      document.getElementById("changepasswordadmin").style.display = "block"
+    }
+
+    function passwordchangeupdateadmin() {
+      if (currentuser != null) {
+        var email = currentuser.email;
+        var oldpass = document.getElementById("currentpasswordadmin").value
+        console.log("oldpass" + oldpass)
+        console.log("oldpass" + currentuser.password)
+        if (oldpass == currentuser.password) {
+          if (document.getElementById("newpassadmin").value == document.getElementById("newpass2admin").value) {
+            URL = "https://sqlite-database.josephinemouse.repl.co/changepassword/" + email + "/" + document.getElementById("newpassadmin").value
+            fetch(URL)
+              .then(() => {
+                console.log("password changed")
+              })
+            alert("Password successfully changed!")
+          }
+
+          else {
+            alert("Please make sure both passwords match")
+          }
+        }
+        else {
+          alert("Password incorrect")
+        }
+      }
+      else {
+        clearall()
+        currentuser = null;
+        document.getELementById("signin").style.display = "block"
+      }
+    }
+
+    function editaccountadmin() {
+      clearall();
+      document.getElementById("admineditprofile").style.display = "block"
+    }
+
+    function namechangeupdate() {
+      if (currentuser != null) {
+        var email = currentuser.email;
+        var newname = document.getElementById("newname").value;
+
+        const URL = "https://sqlite-database.josephinemouse.repl.co/changename/" + email + "/" + newname
+
+        console.log("namechange")
+        console.log(email);
+        console.log(newname);
+        fetch(URL)
+          .then(() => {
+
+          })
+        alert("Name changed successfully!")
+
+      }
+      else {
+        clearall()
+        currentuser = null;
+        document.getELementById("signin").style.display = "block"
+      }
+    }
+
+    function namechangeupdateadmin() {
+      if (adminuser != null) {
+        var email = currentuser.email;
+        var newname = document.getElementById("newnameadmin").value;
+
+        const URL = "https://sqlite-database.josephinemouse.repl.co/changename/" + email + "/" + newname
+
+        console.log("namechange")
+        console.log(email);
+        console.log(newname);
+        fetch(URL)
+          .then(() => {
+
+          })
+        alert("Name changed successfully!")
+
+      }
+      else {
+        clearall()
+        currentuser = null;
+        document.getELementById("signin").style.display = "block"
+      }
+    }
+
+    function changeEmail() {
+      document.getElementById("changeemail").style.display = "block"
+    }
+
+    function gotoadminlogin() {
+      document.getElementById("signin").style.display = "none";
+      document.getElementById("adminlogin").style.display = "block";
+    }
+
+    const createticketURL = 'https://SQLite-Database.josephinemouse.repl.co/createticket/'
+
+    function submitticket() {
+      if (currentuser != null) {
+        var ticketsubject = document.getElementById("ticketsubject").value;
+        var ticketcomment = document.getElementById("ticketcomment").value;
+        var email = currentuser.email;
+        var name = currentuser.name;
+        console.log(email)
+        console.log(name)
+        const submitlink = createticketURL + ticketsubject + "/" + email + "/" + name + "/" + ticketcomment + "/"
+        if (ticketsubject !== null && ticketcomment !== null) {
+          fetch(submitlink, optionsGet)
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("success")
+            })
+          alert("Ticket submitted!")
+          document.getElementById("ticketsubject").value = "";
+          document.getElementById("ticketcomment").value = "";
+        }
+        else {
+          alert("Please fill in all fields")
+        }
+      }
+      else {
+        document.getElementById("submitticket").style.display = "none";
+        document.getElementById("signin").style.display = "block";
+      }
+    }
+
+    function logout() {
+      currentuser = null;
+      console.log(currentuser)
+      document.getElementById("register").style.display = "none";
+      document.getElementById("signin").style.display = "block";
+      document.getElementById("homepage").style.display = "none";
+      document.getElementById("submitpage").style.display = "none";
+      document.getElementById("viewpage").style.display = "none"
+      document.getElementById("editprofilepage").style.display = "none"
+      document.getElementById("deleteaccount").style.display = "none"
+      document.getElementById("changeemail").style.display = "none"
+      document.getElementById("changename").style.display = "none"
+      document.getElementById("changepassword").style.display = "none"
+      // document.getElementById("adminconfirmation").style.display = "none"
+      document.getElementById("adminlogin").style.display = "none"
+      document.getElementById("adminhomepage").style.display = "none"
+    }
+    function adminlogin() {
+      console.log("loggingin")
+      var email = document.getElementById("adminloginEmail").value;
+      var password = document.getElementById("adminloginPassword").value;
+      if (email == "jli@forestridge.org") {
+        console.log("loggingin")
+        const fetchURL = findpassURL + email
+        fetch(fetchURL, optionsGet)
+          .then((response) => response.json())
+          .then((data) => {
+            let correctPassword = data.rows
+            console.log(correctPassword[0].password)
+            if (password == correctPassword[0].password) {
+              console.log("CORRECT")
+              currentuser = correctPassword[0];
+              console.log(currentuser)
+              document.getElementById("adminlogin").style.display = "none";
+              document.getElementById("adminhomepage").style.display = "block"
+              console.log("homepage")
+              adminuser = correctPassword[0].email;
+            }
+            else {
+              console.log("wrong pass")
+              alert("Incorrect password")
+            }
+          })
+          .catch(err => console.error(err))
+        console.log("done")
+      }
+    }
+    function submitpage() {
+      if (currentuser != null) {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.display = "block"
+
+        document.getElementById("submitpage").style.display = "block";
+        document.getElementById("homepage").style.display = "none"
+      }
+      else {
+        document.getElementById("homepage").style.display = "none"
+        document.getElementById("signin").style.display = "block";
+      }
+    }
+
+    function clearall() {
+      document.getElementById("admineditprofile").style.display = "none";
+      document.getElementById("register").style.display = "none";
+      document.getElementById("homepage").style.display = "none";
+      document.getElementById("submitpage").style.display = "none";
+      document.getElementById("viewpage").style.display = "none"
+      document.getElementById("editprofilepage").style.display = "none"
+      document.getElementById("admineditprofile").style.display = "none"
+      document.getElementById("deleteaccount").style.display = "none"
+      document.getElementById("changeemail").style.display = "none"
+      document.getElementById("changename").style.display = "none"
+      document.getElementById("changepassword").style.display = "none"
+      document.getElementById("deleteaccountadmin").style.display = "none"
+      document.getElementById("changenameadmin").style.display = "none"
+      document.getElementById("changepasswordadmin").style.display = "none"
+      document.getElementById("adminlogin").style.display = "none"
+      document.getElementById("adminhomepage").style.display = "none"
+      document.getElementById("viewticketsadmin").style.display = "none"
+    }
+
+    function deleteaccount() {
+      if (currentuser != null) {
+        document.getElementById("deleteaccount").style.display = "block"
+      }
+      else {
+        document.getElementById("editprofilepage").style.display = "none"
+        document.getElementById("signin").style.display = "block";
+      }
+    }
+    function deleteaccountadmin() {
+      if (adminuser != null) {
+        document.getElementById("deleteaccountadmin").style.display = "block"
+      }
+      else {
+        clearall()
+        document.getElementById("signin").style.display = "block";
+      }
+    }
+
+
+
+    const deleteAccount = "https://SQLite-Database.josephinemouse.repl.co/deleteaccount/"
+
+    function finaldelete() {
+      if (currentuser != null) {
+        console.log(currentuser.email)
+        var fetchURL = deleteAccount + currentuser.email;
+        var pass = document.getElementById("passfordelete").value;
+        if (pass == currentuser.password) {
+          console.log("pass")
+          fetch(fetchURL)
+            .then(() => {
+              console.log("deleted")
+              currentuser = null
+              document.getElementById("editprofilepage").style.display = "none";
+              document.getElementById("register").style.display = "block"
+            })
+        }
+      }
+      else {
+        document.getELementById("editprofilepage").style.display = "none"
+        document.getElementById("signin").style.display = "block";
+      }
+    }
+
+    function finaldeleteadmin() {
+      if (adminuser != null) {
+        console.log(currentuser.email)
+        var fetchURL = deleteAccount + currentuser.email;
+        var pass = document.getElementById("passfordeleteadmin").value;
+        if (pass == currentuser.password) {
+          console.log("pass")
+          fetch(fetchURL)
+            .then(() => {
+              console.log("deleted")
+              currentuser = null
+              adminuser = null
+              clearall();
+              document.getElementById("register").style.display = "block"
+            })
+        }
+      }
+      else {
+        document.getELementById("editprofilepage").style.display = "none"
+        document.getElementById("signin").style.display = "block";
+      }
+    }
+
+
+    function openeditprofile() {
+      document.getElementById("editprofilepage").style.display = "block";
+      document.getElementById("homepage").style.display = "none"
+    }
+
+    var adminuser
+
+    window.onload = function () {
+      currentuser = null
+      adminuser = null;
+      clearall()
+    }
+
+    function touserhome() {
+      if (currentuser != null) {
+        clearall()
+        document.getElementById("homepage").style.display = "block"
+      }
+      else if (currentuser == null) {
+        clearall()
+        document.getElementById("signin").style.display = "block"
+      }
+    }
+
+    function toadminhome() {
+      clearall()
+      if (adminuser != null) {
+        document.getElementById("adminhomepage").style.display = "block";
+      }
+      else if (adminuser == null) {
+        document.getElementById("signin").style.display = "block"
+      }
+    }
+
+    const viewbyEmail = 'https://SQLite-Database.josephinemouse.repl.co/viewbyemail/'
+
+
+    function viewticketsadmin() {
+      console.log(document.getElementsByClassName("tickettoview").length + "length")
+      var length = document.getElementsByClassName("tickettoview").length;
+      for (var i = (length - 1); i > -1; i--) {
+        document.getElementsByClassName("tickettoview")[i].remove();
+        console.log("removing" + i)
+      }
+      // for (var i = 0; i < document.getElementsByClassName("tickettoview").length; i++) {
+      //   document.getElementsByClassName("tickettoview")[i].remove();
+      // }
+      clearall();
+      document.getElementById("viewticketsadmin").style.display = "block"
+      const URL = "https://SQLite-Database.josephinemouse.repl.co/tickets"
+      fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+          let rawData = data.rows
+          console.log(rawData)
+          var num = Object.keys(rawData).length
+          console.log(num + "long")
+          for (t = 0; t < num; t++) {
+            if (rawData[t].completed == "complete") {
+              var div = document.createElement("div")
+              div.className = "tickettoview"
+              var title = document.createElement("p")
+              document.getElementById("completed").appendChild(div)
+              div.appendChild(title)
+              var id = document.createElement("p")
+              div.appendChild(id)
+              var comment = document.createElement("p")
+              div.appendChild(comment)
+              div.id = "viewticket" + t;
+              title.id = "viewtickettitle" + t;
+              id.id = "viewticketid" + t;
+              comment.id = "viewticketcomment" + t;
+              title.innerHTML = "Title: " + rawData[t].title;
+              id.innerHTML = "Ticket ID: " + rawData[t].ticketID;
+              comment.className = "ticketcommentadminview"
+              comment.innerHTML = "Comment: " + rawData[t].comment;
+              console.log(t)
+            }
+
+            if (rawData[t].completed == "inprogress") {
+              var div = document.createElement("div")
+              div.className = "tickettoview"
+              var title = document.createElement("p")
+              document.getElementById("inprogress").appendChild(div)
+              div.appendChild(title)
+              var id = document.createElement("p")
+              div.appendChild(id)
+              var comment = document.createElement("p")
+              div.appendChild(comment)
+              div.id = "viewticket" + t;
+              title.id = "viewtickettitle" + t;
+              id.id = "viewticketid" + t;
+              comment.id = "viewticketcomment" + t;
+              title.innerHTML = "Title: " + rawData[t].title;
+              comment.className = "ticketcommentadminview"
+              id.innerHTML = "Ticket ID: " + rawData[t].ticketID;
+              comment.innerHTML = "Comment: " + rawData[t].comment;
+              console.log(t)
+              thisid = rawData[t].ticketID
+              var idnum = t
+              var markascomplete = document.createElement("button");
+              div.appendChild(markascomplete)
+              markascomplete.innerHTML = "Mark as complete";
+              markascomplete.addEventListener('click', function () {
+                console.log("marking")
+                fetch("https://SQLite-Database.josephinemouse.repl.co/markascomplete/" + thisid)
+                  .then(() => {
+                    console.log("markedascomplete")
+                    location.reload()
+                  })
+
+                document.getElementById("viewticketsadmin").style.display = "none";
+                setTimeout(viewticketsadmin(), 1000)
+              });
+            }
+            if (rawData[t].completed == "unseen") {
+              var div = document.createElement("div")
+              div.className = "tickettoview"
+              div.id = "unseen" + t
+              div.setAttribute('id', "unseen" + t)
+              var title = document.createElement("p")
+              document.getElementById("notseen").appendChild(div)
+              div.appendChild(title)
+              var id = document.createElement("p")
+              div.appendChild(id)
+              var comment = document.createElement("p")
+              div.appendChild(comment)
+              div.id = "viewticket" + t;
+              title.id = "viewtickettitle" + t;
+              id.id = "viewticketid" + t;
+              comment.id = "viewticketcomment" + t;
+              title.innerHTML = "Title: " + rawData[t].title;
+              id.innerHTML = "Ticket ID: " + rawData[t].ticketID;
+              comment.innerHTML = "Comment: " + rawData[t].comment;
+              comment.className = "ticketcommentadminview"
+              console.log(t)
+              var inprogress = document.createElement("button")
+              inprogress.innerHTML = "Respond"
+
+              div.appendChild(inprogress)
+              var thisid = rawData[t].ticketID;
+              inprogress.id = "setinprogress" + t;
+              var idnum = t;
+              var email = rawData[t].email;
+
+              inprogress.addEventListener('click', function () {
+                console.log("ticketid" + thisid)
+                fetch("https://SQLite-Database.josephinemouse.repl.co/markinprogress/" + thisid)
+                  .then(() => {
+                  })
+
+                window.location.assign("mailto:" + email + "?Subject=Ticket%20" + thisid)
+                document.getElementById("viewticketsadmin").style.display = "none";
+                setTimeout(viewticketsadmin(), 1000)
+              });
+              // event.preventDefault();
+              // inprogress.onclick = function () {window.location.assign("mailto:" + rawData[t].email + "?Subject=Ticket" + t + ")")}
+            }
+            else {
+              var div = document.createElement("div")
+              div.className = "tickettoview"
+              var title = document.createElement("p")
+              document.getElementById("othertickets").appendChild(div)
+              div.appendChild(title)
+              var id = document.createElement("p")
+              div.appendChild(id)
+              var comment = document.createElement("p")
+              div.appendChild(comment)
+              div.id = "viewticket" + t;
+              title.id = "viewtickettitle" + t;
+              id.id = "viewticketid" + t;
+              comment.id = "viewticketcomment" + t;
+              title.innerHTML = "Title: " + rawData[t].title;
+              id.innerHTML = "Ticket ID: " + rawData[t].ticketID;
+              comment.innerHTML = "Comment: " + rawData[t].comment;
+              comment.className = "ticketcommentadminview"
+              console.log(t)
+            }
+          }
+        })
+    }
+
+
+    function confirmdelete(t, ticketid) {
+      var confirmdelete = document.createElement("div");
+      var confirmquestion = document.createElement("p");
+      confirmdelete.appendChild(confirmquestion)
+      confirmquestion.innerHTML = "Would you like to delete this ticket?"
+      var confirmyes = document.createElement("button");
+      var confirmno = document.createElement("button")
+      confirmdelete.appendChild(confirmyes)
+      confirmdelete.appendChild(confirmno)
+      confirmyes.innerHTML = "Yes"
+      confirmno.innerHTML = "No"
+      confirmdelete.id = "confirmdelete"
+      // document.getElementById("viewpage").insertBefore(confirmdelete, prevdiv)
+      document.getElementById("viewticket" + t).appendChild(confirmdelete)
+      confirmyes.setAttribute("onclick", "deleteticket(" + ticketid + ")")
+      confirmno.addEventListener("click", function () {
+        document.getElementById("confirmdelete").remove()
+        console.log("canceled")
+      })
+    }
+
+    function deleteticket(ticketid) {
+      console.log("deleting")
+      fetch("https://sqlite-database.josephinemouse.repl.co/deleteTicket/" + ticketid)
+        .then(() => {
+          console.log("deleted")
+        })
+      setTimeout(reloadview(), 700)
+      function reloadview() {
+        document.getElementById("viewpage").style.display = "none";
+        viewpage()
+      }
+
+    }
+
+    function editticket(oldtitle, oldcomment, t, ticketid) {
+      var editblock = document.createElement("div");
+      var cancel = document.createElement("button")
+      var edittitle = document.createElement("input");
+      edittitle.type = "text";
+      edittitle.placeholder = "Title";
+      edittitle.id = "edittitle"
+      editblock.appendChild(edittitle)
+      var br1 = document.createElement("br");
+      editblock.appendChild(br1)
+      var editcomment = document.createElement("input");
+      editcomment.type = "text";
+      editcomment.id = "editcomment"
+      editcomment.placeholder = "Comment";
+      editblock.appendChild(editcomment);
+      var br2 = document.createElement("br");
+      editblock.appendChild(br2)
+      var submit = document.createElement("button")
+      editblock.appendChild(submit)
+      submit.innerHTML = "Submit"
+      editblock.appendChild(cancel)
+      cancel.innerHTML = "Cancel"
+      editblock.id = "editblock"
+      edittitle.value = oldtitle;
+      editcomment.value = oldcomment;
+      document.getElementById("viewticket" + t).appendChild(editblock)
+      newcomment = document.getElementById("editcomment").value;
+      newtitle = document.getElementById("edittitle").value
+      submit.setAttribute("onclick", "edit(" + ticketid + ")")
+      // submit.setAttribute("onclick", "edit(" + "'" + newtitle + "'" + "," + "'" + newcomment + "'" + "," + ticketid + ")")
+      // console.log(newtitle)
+      cancel.addEventListener("click", function () {
+        document.getElementById("editblock").remove()
+        console.log("canceled")
+      })
+    }
+
+    function edit(ticketID) {
+      newcomment = document.getElementById("editcomment").value
+      newtitle = document.getElementById("edittitle").value;
+      console.log(newcomment)
+      console.log(newtitle)
+      console.log("editing")
+      fetch("https://SQLite-Database.josephinemouse.repl.co/updateTicket/" + newtitle + "/" + newcomment + "/" + ticketID)
+        .then(() => {
+          console.log("Updated")
+        })
+      alert("Comment successfully updated")
+      viewpage()
+    }
+
+    function viewpage() {
+      clearall()
+      document.getElementById("viewpage").style.display = "block";
+
+      console.log(document.getElementsByClassName("ticketdiv").length + "length")
+      var length = document.getElementsByClassName("ticketdiv").length;
+      for (var i = (length - 1); i > -1; i--) {
+        document.getElementsByClassName("ticketdiv")[i].remove();
+        console.log("removing" + i)
+      }
+      // console.log(document.getElementsByClassName("ticketdiv").length + "length")
+      // var length = document.getElementsByClassName("ticketdiv").length;
+      // for (var i = 0; i < length; i++) {
+      //   document.getElementsByClassName("ticketdiv")[i].remove();
+      //   console.log("removing" + i)
+      // }
+      var email = currentuser.email;
+
+      fetchURL = viewbyEmail + email
+      console.log(fetchURL)
+      fetch(fetchURL)
+        .then((response) => response.json())
+        .then((data) => {
+          let rawData = data.rows
+          // let rawData = JSON.stringify(data.rows)
+          console.log(rawData)
+          var num = Object.keys(rawData).length
+          console.log(num + "long")
+          for (t = 0; t < num; t++) {
+            var div = document.createElement("div")
+            var title = document.createElement("p")
+            document.getElementById("viewpage").appendChild(div)
+            div.appendChild(title)
+            var status = document.createElement("p")
+            div.appendChild(status)
+            var id = document.createElement("p")
+            div.appendChild(id)
+            var comment = document.createElement("p")
+            status.innerHTML = "Status: " + rawData[t].completed;
+            div.appendChild(comment)
+            div.className = "ticketdiv"
+            div.id = "viewticket" + t;
+            title.id = "viewtickettitle" + t;
+            id.id = "viewticketid" + t;
+            id.comment = "viewticketcomment" + t;
+            title.innerHTML = "Title: " + rawData[t].title;
+            id.innerHTML = "Ticket ID: " + rawData[t].ticketID;
+            comment.innerHTML = "Comment: " + rawData[t].comment;
+            var trashbutton = document.createElement("img")
+            trashbutton.src = "https://www.freeiconspng.com/thumbs/trash-can-icon/trash-can-icon-28.png"
+            div.appendChild(trashbutton)
+            var editbutton = document.createElement("img")
+            editbutton.src = "https://www.citypng.com/public/uploads/small/11640250663tlai1byi0srlsgq2regq6dlss8ibxcms34dlnpjjpmohleaxtghe83o2rgetjwoz62hemymbpibwqebkjtyt3zhyngxod7alxjei.png"
+            trashbutton.style.height = "20px";
+            trashbutton.style.top = "15px";
+            trashbutton.style.right = "15px";
+            trashbutton.style.position = "absolute"
+            div.appendChild(editbutton);
+            editbutton.style.height = "20px";
+            editbutton.style.top = "15px";
+            editbutton.style.right = "45px";
+            editbutton.style.position = "absolute";
+
+            editbutton.setAttribute("onclick", "editticket(" + "'" + rawData[t].title + "'" + "," + "'" + rawData[t].comment + "'" + "," + t + "," + rawData[t].ticketID + ")")
+            trashbutton.setAttribute("onclick", "confirmdelete(" + t + "," + rawData[t].ticketID + ")")
+            //                          function () {
+            //   var confirmdelete = document.createElement("div");
+            //   var confirmquestion = document.createElement("p");
+            //   confirmdelete.appendChild(confirmquestion)
+            //   confirmquestion.innerHTML = "Are you sure?"
+            //   var confirmyes = document.createElement("button");
+            //   var confirmno = document.createElement("button")
+            //   confirmdelete.appendChild(confirmyes)
+            //   confirmdelete.appendChild(confirmno)
+            //   div.appendChild(confirmdelete)
+            //   confirmyes.innerHTML = "Yes"
+            //   confirmno.innerHTML = "No"
+            // })
+            // var optionsbutton = document.createElement("img")
+            // div.appendChild(optionsbutton)
+            // optionsbutton.className = "ticketoptions"
+            // optionsbutton.src = "http://cdn.onlinewebfonts.com/svg/img_5304.png";
+            comment.style.marginBottom = "15px"
+            title.style.marginTop = "15px"
+            // optionsbutton.id = "ticketoptions" + t
+            title.style.marginBottom = "0px"
+            id.style.marginTop = "10px"
+            // optionsbutton.style.zIndez = "1"
+            id.style.marginBottom = "0px"
+            comment.style.marginTop = "10px"
+            // viewpage.preventDefault();
+            // var thisid = optionsbutton.id;
+            // optionsbutton.setAttribute("onclick", "ticketoptions(" + t + ")")
+            // optionsbutton.addEventListener('click', function () {
+            //   optionsbutton.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png";
+            //   optionsbutton.style.height = "50px"
+            //   optionsbutton.style.top = "40px";
+            //   optionsbutton.style.right = "40px";
+            // })
+            // optionsbutton.onclick = function () {
+            //   console.log("clicked")
+            //   console.log("idis" + thisid)
+
+            //   var currentticket = document.getElementById(thisid)
+            //   currentticket.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png";
+            //   currentticket.style.height = "50px"
+            //   currentticket.style.top = "40px";
+            //   currentticket.style.right = "40px";
+            // }
+            // optionsbutton.addEventListener('click', "ticketoptions(" + t + ")")
+            // document.getElementById("ticketoptions" + t).onclick = ticketoptions(t);
+            // optionsbutton.onClick = ticketoptions(num)
+          }
+          // document.getElementById("ticketsview").innerHTML = rawData;
+          // console.log(rawData)
+        })
+    }
+
+    // function ticketoptions(num) {
+    //   console.log("ticket" + num)
+    //   var ticket = document.getElementById("ticketoptions" + num)
+    //   console.log(ticket)
+    //   ticket.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Solid_white.svg/2048px-Solid_white.svg.png";
+    //   document.getElementById("ticketoptions" + num).style.height = "70px"
+    //   document.getElementById("ticketoptions" + num).style.top = "10px";
+    //   document.getElementById("ticketoptions" + num).style.right = "10px";
+    //   var deleteoption = document.createElement("button");
+    //   deleteoption.innerHTML = "Delete"
+    //   var edit = document.createElement("button");
+    //   edit.innerHTML = "Edit"
+    //   ticket.appendChild(deleteoption)
+    //   ticket.appendChild(edit)
+    //   deleteoption.style.zIndex = "2";
+    //   edit.style.zIndez = "2"
+    // }
+
+    const baseURL = 'https://SQLite-Database.josephinemouse.repl.co'
+
+    const usercheckURL = 'https://SQLite-Database.josephinemouse.repl.co/checkuser/'
+
+    const findpassURL = 'https://SQLite-Database.josephinemouse.repl.co/checkpass/'
+
+    const createuserURL = 'https://SQLite-Database.josephinemouse.repl.co/createuser/'
+
+
+    let optionsGet = {
+      method: 'GET'
+    };
+
+    var currentuser;
+
+    var userstatus;
+
+    function adminregister() {
+      document.getElementById("adminPassword").style.display = "block"
+    }
+
+    function login() {
+      console.log("loggingin")
+      var email = document.getElementById("signinEmail").value;
+      var password = document.getElementById("signinPassword").value;
+      const fetchURL = findpassURL + email
+      fetch(fetchURL, optionsGet)
+        .then((response) => response.json())
+        .then((data) => {
+          let correctPassword = data.rows
+          if (Object.keys(correctPassword).length > 0) {
+            console.log(correctPassword[0].password)
+            if (password == correctPassword[0].password) {
+              console.log("CORRECT")
+              adminuser = null;
+              currentuser = correctPassword[0];
+              console.log(currentuser)
+              document.getElementById("signin").style.display = "none";
+              document.getElementById("homepage").style.display = "block"
+            }
+            else {
+              console.log("wrong pass")
+              alert("Incorrect password or email")
+            }
+          }
+          else {
+            alert("Account does not exist")
+          }
+        })
+        .catch(err => console.error(err))
+      console.log("done")
+    }
+
+
+
+    function createaccount() {
+      document.getElementById("signin").style.display = "none";
+      document.getElementById("register").style.display = "block";
+    }
+
+    function alreadyhave() {
+      document.getElementById("signin").style.display = "block";
+      document.getElementById("register").style.display = "none";
+      document.getElementById("adminlogin").style.display = "none";
+    }
+
+    function submitregister() {
+
+      var email = document.getElementById("registerEmail").value;
+      var name = document.getElementById("registerName").value;
+      var password = document.getElementById("registerPassword").value;
+      const createAccount = usercheckURL + email + "/" + name + "/" + password + "/"
+      fetch(createAccount, optionsGet)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("worked")
+          let user = data.rows
+          console.log(user)
+          console.log(Object.keys(user).length)
+          if (Object.keys(user).length < 1) {
+            const finalCreate = createuserURL + email + "/" + name + "/" + password
+            document.getElementById("register").style.display = "none";
+            document.getElementById("homepage").style.display = "block";
+            fetch(finalCreate, optionsGet)
+              .then(() => {
+                const fetchURL = findpassURL + email
+                fetch(fetchURL, optionsGet)
+                  .then((response) => response.json())
+                  .then((data) => {
+                    let correctPassword = data.rows
+                    console.log(correctPassword[0])
+                    currentUser = correctPassword[0]
+                    alert("Account created!")
+                  })
+              })
+
+          }
+          else {
+            alert("That email is already taken")
+          }
+        })
+    }
+  </script>
+</body>
+
+</html>

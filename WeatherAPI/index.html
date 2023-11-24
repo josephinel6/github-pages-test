@@ -1,0 +1,329 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        .body {
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+        }
+
+        #xbutton:hover {
+            cursor: pointer;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .firstblock {
+            height: 100%;
+            width: 100%;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #showweather {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #weather {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            font-size: 75px;
+            height: 100%;
+            width: 100%;
+            font-family: sans-serif;
+            color: white;
+            justify-content: center;
+        }
+
+        #changebg:hover {
+            cursor: pointer;
+        }
+
+        .latlong {
+            height: 25px;
+            width: 200px;
+            border-radius: 5px;
+            border-color: whitesmoke;
+            border-style: solid;
+        }
+
+        #enterlocation #latlongtxt {
+            display: none;
+            font-size: 10px;
+            text-align: center;
+            background-color: #555;
+            border-radius: 6px;
+            padding: 5px 5px;
+            width: 25%;
+            margin-left: -7%;
+            margin-right: 25%;
+            margin-top: -6%;
+        }
+
+        #enterlocation:hover #latlongtxt {
+            display: block;
+        }
+
+        #latlongtxt {
+            position: absolute;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="firstblock">
+        <!-- <iframe style="width: 100%; height: 100; aspect-ratio: 9/16" id="bgvid" allow="accelerometer; autoplay"
+            allowfullscreen></iframe> -->
+        <div class="main" style="margin-top: 200px">
+            <h1 style="font-family: sans-serif; color: white"> What's the weather outside? </h1>
+        </div>
+        <div class="main" style="margin-top: -30px">
+            <h2 style="color: white; font-size: 26px; font-family: sans-serif" id="enterlocation"> Enter location:
+                <p id="latlongtxt" style="color:white"> <b> Why latitude and longitude? </b> Unfortunately, the only
+                    weather API I could
+                    find that was accessible without a key will only take latitude and longitude for location, and I
+                    wan't able to find a geocoding API that doesn't require a key. To find the latitude and longitude of
+                    your desired location, you can try latlong.net. </p>
+            </h2>
+        </div>
+        <div class="main">
+            <input type="text" class="latlong" id="latitude" placeholder="Latitude">
+        </div>
+        <div class="main" style="margin-top: 5px">
+            <input type="text" class="latlong" id="longitude" placeholder="Longitude">
+        </div>
+        <div class="main" style="margin-top: 12px">
+            <button id="submitbutton" onclick="getweather()"
+                style="font-family:sans-serif; border-radius: 10px; font-size: 18px; border-color:lightgrey; border-style: solid; color: white; background-color: lightgrey">
+                Go
+            </button>
+        </div>
+        <div>
+            <img src="brush.png" id="changebg"
+                style="position: absolute; right: 10px; bottom: 15px; border-radius: 50%; height: 40px; width: 40px"
+                onclick="changebg()">
+        </div>
+    </div>
+    <!-- <button onclick="printtest()"> Click me </button> -->
+
+    <div id="showweather">
+        <div id="xbutton"
+            style="color: white; position: absolute; top: 10px; right: 15px; font-family: sans-serif; font-size: 18px"
+            onclick="backtohome()">
+            x </div>
+        <h1 id="weather"> degrees </h1>
+    </div>
+
+    <script>
+        // var videoarray = ["https://www.youtube.com/embed/NLs3LqVgpT4", "https://www.youtube.com/embed/UyZfCrrdbm8", "https://www.youtube.com/embed/TD0WWFIDAg", "https://www.youtube.com/embed/V3-Ex0WOrI8", "https://www.youtube.com/embed/B6eL_N0N5KI", "https://www.youtube.com/embed/Qujfbih0qXM", "https://www.youtube.com/embed/hlWiI4xVXKY", "https://www.youtube.com/embed/FMrtSHAAPhM"]
+
+        // function genvid() {
+
+        //     var number = Math.floor(Math.random() * videoarray.length - 1);
+        //     var vidnum = videoarray[number]
+        //     console.log(vidnum)
+        //     var video = document.getElementById("bgvid");
+        //     video.setAttribute("src", vidnum);
+        // }
+
+        var firstblock = document.getElementById("firstblock")
+        var secondblock = document.getElementById("showweather")
+
+        window.onload = function () {
+
+            document.body.style.backgroundImage = "url('https://picsum.photos/1920/1080')"
+            console.log("abc")
+            secondblock.style.display = "none"
+            firstblock.style.display = "block"
+        }
+
+        function changebg() {
+            var num = Math.random()
+            document.body.style.backgroundImage = "url('https://picsum.photos/1920/1080?random=" + num + "')"
+            console.log("changebg")
+        }
+
+        function printtest() {
+            var city = document.getElementById("city").value;
+            console.log(city)
+        }
+
+        function backtohome() {
+            firstblock.style.display = "block";
+            secondblock.style.display = "none";
+            var num = Math.random()
+            document.body.style.backgroundImage = "url('https://picsum.photos/1920/1080?random=" + num + "')"
+            document.getElementById("latitude").value = "";
+            document.getElementById("longitude").value = "";
+        }
+
+        function getweather() {
+            console.log("lagsdjk;f")
+            var lat = document.getElementById("latitude").value;
+            var long = document.getElementById("longitude").value;
+            console.log('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&temperature_unit=fahrenheit' + '&current_weather=true')
+            fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + long + '&temperature_unit=fahrenheit' + '&current_weather=true')
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response)
+                    weather.innerHTML = response.current_weather.temperature + "° F";
+                    firstblock.style.display = "none";
+                    secondblock.style.display = "block";
+                    if (response.current_weather.weathercode == 0) {
+                        document.body.style.backgroundImage = "url('clear.jfif')"
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 1) {
+                        document.body.style.backgroundImage = "url('pexels-photomix-company-96622.jpg')"
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 2) {
+                        document.body.style.backgroundImage = "url('partlycloudy.jfif')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 3) {
+                        document.body.style.backgroundImage = "url('overcast.jfif')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 45) {
+                        document.body.style.backgroundImage = "url('fog.jpg')"
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 48) {
+                        document.body.style.backgroundImage = "url('depositingrimefog.jpg')"
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 51 || response.current_weather.weathercode == 52 || response.current_weather.weathercode == 53) {
+                        document.body.style.backgroundImage = "url('drizzle.webp')"
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 56 || response.current_weather.weathercode == 57) {
+                        document.body.style.backgroundImage = "url('frozendrizzle.jpg')";
+                    }
+                    else if (response.current_weather.weathercode == 61 || response.current_weather.weathercode == 63) {
+                        document.body.style.backgroundImage = "url('rain.jpeg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 65) {
+                        document.body.style.backgroundImage = "url('heavyrain.jpeg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 66 || response.current_weather.weathercode == 67) {
+                        document.body.style.backgroundImage = "url('frozenrain.webp')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 71) {
+                        document.body.style.backgroundImage = "url('lightsnow.jpg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 73) {
+                        document.body.style.backgroundImage = "url('snowing.png')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 75) {
+                        document.body.style.backgroundImage = "url('heavysnow.jpg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 77) {
+                        document.body.style.backgroundImage = "url('snowgrains.jpg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 80) {
+                        document.body.style.backgroundImage = "url('lightrainshowers.jpg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 81) {
+                        document.body.style.backgroundImage = "url('rainshowers.jfif')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 82) {
+                        document.body.style.backgroundImage = "url('heavyrainshower.jpg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 85) {
+                        document.body.style.backgroundImage = "url('lightsnowshowers.jfif')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 86) {
+                        document.body.style.backgroundImage = "url('heavysnowshowers.jfif')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 95) {
+                        document.body.style.backgroundImage = "url('thunderstorm.jpg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 96) {
+                        document.body.style.backgroundImage = "url('lighthail.jpg')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                    else if (response.current_weather.weathercode == 99) {
+                        document.body.style.backgroundImage = "url('heavythunderstorm.webp')";
+                        document.body.style.backgroundSize = "100% 100%";
+                        document.body.style.backgroundRepeat = "no-repeat";
+                    }
+                })
+                .catch(err => {
+                    console.error(err)
+                    alert("Sorry, we could not get the weather for that location. Please check the details you entered.")
+                });
+        }
+
+        var lat = document.getElementById("latitude");
+        var long = document.getElementById("longitude");
+
+        lat.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("submitbutton").click();
+            }
+        });
+
+        long.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("submitbutton").click();
+            }
+        });
+
+        // fetch('https://api.open-meteo.com/v1/forecast?current_weather=true&temperature_unit=fahrenheit')
+        //     .then(response => response.json())
+        //     .then(response => console.log(response))
+        //     .catch(err => console.error(err));
+    </script>
+</body>
+
+</html>

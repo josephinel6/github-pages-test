@@ -1,0 +1,332 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        /* body,
+        html {
+            background-color: purple;
+        } */
+
+        .tabcontent {
+            height: 100px;
+        }
+
+        .question {
+            text-align: center;
+        }
+
+        .answerbutton {
+            border-radius: 5px;
+            border: none;
+            height: 50px;
+            background-color: lightgrey;
+            width: 200px;
+            margin: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .answerbutton:hover {
+            background-color: grey;
+        }
+
+        .askquestion {
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-bottom: 7px;
+        }
+
+        .scorebox {
+            height: 25px;
+            width: 100px;
+            border-radius: 5px;
+            float: right;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            vertical-align: center;
+            background-color: lightblue;
+        }
+
+        .arrow {
+            height: 100px;
+            width: 100px;
+        }
+
+        .finishbutton {
+            margin-top: 50px;
+            height: 50px;
+            width: 300px;
+            background-color: lightgreen;
+            text-align: center;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .finishbutton {
+            margin-top: 50px;
+            height: 50px;
+            width: 300px;
+            background-color: lightgreen;
+            text-align: center;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .tryagainbtn {
+            height: 25px;
+            width: 100px;
+            background-color: lightblue;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #scorepage {}
+    </style>
+
+</head>
+
+<body>
+    <!-- <button id="home" style="border: none; color: white; background-color: white;"> Home </button> -->
+    <!-- <div class="tabcontent" id="home">
+        <CENTER>
+            <h1> Welcome </h1>
+        </CENTER>
+        <div class="box">
+            <div class="boxinside" onclick="location.href='testquiz.html'">
+                <div class="box-front"
+                    style="display: flex; justify-content: center; align-items: center; background-color:rosybrown">
+                    Test </div>
+                <div class="box-back" style="display: flex; justify-content: center; align-items: center">
+                    This is a
+                    test thing </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="boxinside" onclick="location.href = 'mathquiz.html'">
+                <div class="box-front"
+                    style="display: flex; justify-content: center; align-items: center; background-color:plum">
+                    Math </div>
+                <div class="box-back" style="display: flex; justify-content: center; align-items: center"> This is a
+                    math quiz </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="boxinside" onclick="location.href = 'createnewquiz.html'">
+                <div class="box-front"
+                    style="display: flex; justify-content: center; align-items: center; background-color:plum; font-size: 50px">
+                    +
+                </div>
+                <div class="box-back" style="display: flex; justify-content: center; align-items: center"> Add your own
+                    quiz </div>
+            </div>
+        </div>
+    </div> -->
+    <div id="testquiz" class="tabcontent">
+        <button onclick="location.href = 'index.html'"> Back to home </button>
+        <div class="scorebox" id="scorebox"> </div>
+        <div class="question" id="question1">
+            <CENTER>
+                <p class="askquestion"> The capital of the US is... </p>
+            </CENTER>
+            <button class="answerbutton false1" id="false" onclick="falseanswer('true1', 'false1')"> Montana </button>
+            <button class="answerbutton false1" id="false" onclick="falseanswer('true1', 'false1')"> San Diego </button>
+            <button class="answerbutton true1" id="true" onclick="trueanswer('true1', 'false1'); addscore()"> Washington
+                D.C.
+            </button>
+            <button class="answerbutton false1" id="false" onclick="falseanswer('true1', 'false1')"> Alameda </button>
+            <br>
+            <img src=arrow.png style="display: none" id="arrow1" class="arrow">
+        </div>
+        <div class="question" id="question2" style="display: none">
+            <CENTER>
+                <p class="askquestion"> The capital of Canada is... </p>
+            </CENTER>
+            <button class="answerbutton true2" id="true" onclick="trueanswer('true2', 'false2'); addscore()"> Ottawa
+            </button>
+            <button class="answerbutton false2" id="false" onclick="falseanswer('true2', 'false2')"> British Columbia
+            </button>
+            <button class="answerbutton false2" id="false" onclick="falseanswer('true2', 'false2')"> Vancouver </button>
+            <button class="answerbutton false2" id="false" onclick="falseanswer('true2', 'false2')"> Quebec </button>
+            <br>
+            <img src=arrow.png style="display: none" id="arrow2" class="arrow">
+        </div>
+        <div class="question" id="question3" style="display: none">
+            <CENTER>
+                <p class="askquestion"> The capital of India is... </p>
+            </CENTER>
+            <button class="answerbutton false3" id="false" onclick="falseanswer('true3', 'false3')"> Mumbai
+            </button>
+            <button class="answerbutton false3" id="false" onclick="falseanswer('true3', 'false3')"> Benglaru </button>
+            <button class="answerbutton false3" id="false" onclick="falseanswer('true3', 'false3')"> Jaipur </button>
+            <button class="answerbutton true3" id="true" onclick="trueanswer('true3', 'false3'); addscore()"> New Delhi
+            </button>
+            <br>
+            <button id="arrow3" class="finishbutton" style="display: none"
+                onclick="openquiz('scorepage', this); showscore()"> Finish </button>
+        </div>
+    </div>
+    <div id="scorepage" class="tabcontent">
+        <button onclick="location.href = 'index.html'"> Back to home </button>
+        <h2 id="comment" style="text-align: center"> Comment </h2>
+        <h3 style="margin: 0px; text-align: center"> You got: </h3>
+        <div style="text-align: center">
+            <h3 id="scorenum" style="display: inline-block; margin=0px"> number </h3>
+            <h3 style="display: inline-block"> out of </h3>
+            <h3 id="total" style="display: inline-block"> total </h3>
+        </div>
+        <CENTER><button onclick="location.href='testquiz.html'" class="tryagainbtn"> Try
+                again </button></CENTER>
+    </div>
+    <script>
+
+
+        var a = 0
+        var question = document.getElementsByClassName("question")
+        var questionscapital = [1, 2, 3]
+        var b = 1
+
+        var score = 0
+
+
+        const questionIterator = questionscapital[Symbol.iterator]()
+
+
+        $("document").ready(function () {
+            $("#question2").hide()
+        })
+        $("document").ready(function () {
+            $("#question3").hide()
+        })
+        function openquiz(pageName, elmnt) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("box");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+            console.log("ducks")
+        }
+
+        function falseanswer(questiontrue, questionfalse) {
+
+            var truebutton = document.getElementsByClassName(questiontrue)
+            var falsebutton = document.getElementsByClassName(questionfalse)
+            for (var i = 0; i < falsebutton.length; i++) {
+                falsebutton[i].style.backgroundColor = "#d10000"
+
+                console.log("Flowers")
+            }
+            for (var i = 0; i < truebutton.length; i++) {
+                truebutton[i].style.backgroundColor = "#228c22"
+
+                console.log("treen")
+            }
+
+            a++
+            loadnext()
+        }
+
+        function trueanswer(questiontrue, questionfalse) {
+
+            var truebutton = document.getElementsByClassName(questiontrue)
+            var falsebutton = document.getElementsByClassName(questionfalse)
+            for (var i = 0; i < truebutton.length; i++) {
+                truebutton[i].style.backgroundColor = "#228c22"
+                console.log("Flowers")
+            }
+
+            a++
+            loadnext()
+        }
+
+        function addscore() {
+            score++
+            document.getElementById("scorebox").innerHTML = score
+        }
+
+        function showscore() {
+            document.getElementById("scorenum").innerHTML = score
+            document.getElementById("total").innerHTML = questionscapital.length
+
+            console.log(questionscapital.length / 2)
+            if (score > questionscapital.length / 2) {
+                document.getElementById("comment").innerHTML = "Congratulations!"
+            }
+            else {
+                document.getElementById("comment").innerHTML = "You'll get it next time!"
+            }
+        }
+
+        function loadnext() {
+
+            $("#arrow" + a).ready(function () {
+                $("#arrow" + a).fadeIn();
+                console.log(a)
+                console.log(b)
+                console.log("buttons" + b)
+            })
+            $("#arrow" + a).click(function () {
+                console.log(a)
+                console.log("clicked")
+
+                $("#question" + b).fadeIn();
+                console.log("fading" + b)
+                $("#arrow" + a).hide()
+
+            })
+            b++
+        }
+
+        // function questioniterator() {
+        //     questionIterator.next.value
+        //     return value;
+        // }
+
+        function nextquestion() {
+            // questionIterator.next();
+
+            var questionhide = "question" + questionIterator.current().value
+            var questionshow = "question" + questionIterator.next().value
+
+            console.log(questionshow)
+
+            document.getElementById(questionhide).style.display = "none"
+            document.getElementById(questionshow).style.display = "block"
+
+            // $("#question" + questionIterator.value).hide()
+            // console.log("#question" + questionIterator.value)
+            // $("#question" + questionIterator.next().value).fadeIn();
+            // console.log("bumblebee")
+            // console.log(questionIterator.next().value)
+        }
+
+        // function checkanswer(trueorfalse) {
+        //     if (trueorfalse = "true") {
+        //         truebutton.style.backgroundColor = "green"
+        //     }
+        //     else {
+        //         falsebutton.style.backgroundColor = "red";
+        //         truebutton.style.backgroundColor = "green"
+        //     }
+        // }
+
+        window.onload = openquiz('testquiz', this)
+
+        window.onload = function () {
+
+            document.getElementById("scorebox").innerHTML = score
+        }
+    </script>
+
+</body>
+
+</html>

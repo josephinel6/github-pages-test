@@ -1,0 +1,227 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+  <!-- <script> AOS.init(); </script> -->
+  <style>
+    .tabcontent {
+      height: 100px;
+    }
+
+    .question {
+      text-align: center;
+    }
+
+    .answerbutton {
+      border-radius: 5px;
+      border: none;
+      height: 50px;
+      background-color: lightgrey;
+      width: 200px;
+      margin: 10px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .answerbutton:hover {
+      background-color: grey;
+    }
+
+    .askquestion {
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      display: inline-block;
+    }
+
+    .input {
+
+      display: inline-block;
+    }
+
+    .scorebox {
+      height: 50px;
+      width: 100px;
+      float: right;
+      text-align: center;
+      background-color: lightblue;
+    }
+
+    .arrow {
+      height: 100px;
+      width: 100px;
+    }
+
+    .finishbutton {
+      margin-top: 25px;
+      height: 50px;
+      width: 300px;
+      background-color: lightgreen;
+      text-align: center;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .tryagainbtn {
+      height: 25px;
+      width: 100px;
+      background-color: lightblue;
+      text-align: center;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mathquiz" class="tabcontent">
+    <button onclick="location.href = 'index.html'"> Back to home </button>
+    <div class="question" id="question1" style="margin-top: 20px;">
+      <CENTER>
+        <p class="askquestion"> 1 + 1 = </p>
+        <p style="display: inline-block"> </p>
+        <input type="text" id="oneplusone" class="input">
+
+      </CENTER>
+      <br>
+    </div>
+    <div class="question" id="question2">
+      <CENTER>
+        <p class="askquestion"> 2 + 2 = </p>
+        <p style="display: inline-block"> </p>
+        <input type="text" id="twoplustwo" class="input">
+
+      </CENTER>
+      <br>
+    </div>
+    <div class="question" id="question3">
+      <CENTER>
+        <p class="askquestion"> 3 + 3 = </p>
+        <p style="display: inline-block"> </p>
+        <input type="text" id="threeplusthree" class="input">
+
+      </CENTER>
+      <br>
+    </div>
+    <div class="question" id="question4">
+      <CENTER>
+        <p class="askquestion"> 4 + 4 = </p>
+        <p style="display: inline-block"> </p>
+        <input type="text" id="fourplusfour" class="input">
+
+      </CENTER>
+      <br>
+    </div>
+    <div class="question" id="question5">
+      <CENTER>
+        <p class="askquestion"> 5 + 5 = </p>
+        <p style="display: inline-block"> </p>
+        <input type="text" id="fiveplusfive" class="input">
+
+      </CENTER>
+      <br>
+    </div>
+    <CENTER> <button id="finishbutton" class="finishbutton"
+        onclick="openquiz('scorepage', this), calculatescore(), showscore()">
+        Finish </button> </CENTER>
+
+  </div>
+  <div id="scorepage" class="tabcontent">
+    <button onclick="location.href = 'index.html'"> Back to home </button>
+    <h2 id="comment" style="text-align: center"> Comment </h2>
+    <h3 style="margin: 0px; text-align: center"> You got: </h3>
+    <div style="text-align: center">
+      <h3 id="scorenum" style="display: inline-block; margin=0px"> number </h3>
+      <h3 style="display: inline-block"> out of </h3>
+      <h3 id="total" style="display: inline-block"> total </h3>
+    </div>
+    <CENTER><button onclick="location.href = 'mathquiz.html'" class="tryagainbtn"> Try again </button></CENTER>
+  </div>
+
+  <script>
+
+    var score = 0
+
+    var mathquestions = [1, 2, 3, 4, 5]
+
+    function showscore() {
+      document.getElementById("scorenum").innerHTML = score
+      document.getElementById("total").innerHTML = mathquestions.length
+
+      console.log(mathquestions.length / 2)
+      if (score > mathquestions.length / 2) {
+        document.getElementById("comment").innerHTML = "Congratulations!"
+      }
+      else {
+        document.getElementById("comment").innerHTML = "You'll get it next time!"
+      }
+    }
+
+    window.onload = openquiz("mathquiz", this);
+
+    var answerone = $("#oneplusone").val();
+    var answertwo = $("#twoplustwo").val();
+    var answerthree = $("#threeplusthree").val();
+    var answerfour = $("#fourplusfour").val();
+    var answerfive = $("#fiveplusfive").val();
+
+    function calculatescore() {
+      if (($("#oneplusone").val()) == 2) {
+        score++
+      }
+      if (($("#twoplustwo").val()) == 4) {
+        score++
+      }
+      if (($("#threeplusthree").val()) == 6) {
+        score++
+      }
+      if (($("#fourplusfour").val()) == 8) {
+        score++
+      }
+      if (($("#fiveplusfive").val()) == 10) {
+        score++
+      }
+      // if (parseInt(answerone) == 2) {
+      //     score++
+      //     console.log("one")
+      // }
+      // if (parseInt(answertwo) == 4) {
+      //     score++
+      //     console.log("two")
+      // }
+      // if (parseInt(answerthree) == 6) {
+      //     score++
+      //     console.log("three")
+      // }
+      // if (parseInt(answerfour) == 8) {
+      //     score++
+      //     console.log("four")
+      // }
+      // console.log(parseInt(answerfive))
+      // if (parseInt(answerfive) == 10) {
+      //     score++
+      //     console.log("five")
+      // }
+    }
+
+    function openquiz(pageName, elmnt) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("box");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+      }
+      document.getElementById(pageName).style.display = "block";
+
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+      console.log("ducks")
+    }
+
+  </script>
+</body>
+
+</html>
